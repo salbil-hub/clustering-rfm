@@ -1,9 +1,14 @@
+import os
 import streamlit as st
 import joblib
 import pandas as pd
 import numpy as np
 
-package = joblib.load("deployment_model/clustering_deployment.joblib")
+path = "deployment_model/clustering_deployment.joblib"
+if not os.path.exists(path):
+    path = "clustering_deployment.joblib"
+package = joblib.load(path)
+
 model = package["model"]
 scaler = package["scaler"]
 feature_columns = package["feature_columns"]
